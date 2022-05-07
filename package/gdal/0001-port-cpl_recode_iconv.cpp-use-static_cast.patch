@@ -1,0 +1,25 @@
+From ad77d7c507700c4244c2fe6ec87544050ef88587 Mon Sep 17 00:00:00 2001
+From: Dominik Michael Rauh <dmrauh@posteo.de>
+Date: Fri, 6 May 2022 21:29:49 +0200
+Subject: [PATCH] port/cpl_recode_iconv.cpp: use static_cast
+
+---
+ port/cpl_recode_iconv.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/port/cpl_recode_iconv.cpp b/port/cpl_recode_iconv.cpp
+index 33c2e06..b4be482 100644
+--- a/port/cpl_recode_iconv.cpp
++++ b/port/cpl_recode_iconv.cpp
+@@ -87,7 +87,7 @@ char *CPLRecodeIconv( const char *pszSource,
+ 
+     sConv = iconv_open( pszDstEncoding, pszSrcEncoding );
+ 
+-    if( sConv == reinterpret_cast<iconv_t>(-1) )
++    if( sConv == static_cast<iconv_t>(-1) )
+     {
+         CPLError( CE_Warning, CPLE_AppDefined,
+                   "Recode from %s to %s failed with the error: \"%s\".",
+-- 
+2.35.1
+
